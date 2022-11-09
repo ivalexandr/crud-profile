@@ -9,6 +9,7 @@ async function bootstrap() {
     new ValidationPipe({
       whitelist: true,
       forbidNonWhitelisted: true,
+      skipMissingProperties: true,
     }),
   );
   await app.listen(PORT);
