@@ -1,4 +1,5 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
+import { JwtService } from '@nestjs/jwt';
 import { UsersService } from 'src/users/users.service';
 import { compare } from 'bcryptjs';
 import { CreateAuthDto } from './dto/create.auth.dto';
@@ -6,7 +7,10 @@ import { User } from 'src/users/entites/user.entity';
 
 @Injectable()
 export class AuthService {
-  constructor(private readonly userService: UsersService) {}
+  constructor(
+    private readonly userService: UsersService,
+    private readonly jwtService: JwtService,
+  ) {}
 
   private async comparePassword(
     password: string,
@@ -28,6 +32,13 @@ export class AuthService {
       return user;
     }
     return null;
+  }
+
+  async loginUser(authBody: User) {
+    const payload = { username: authBody.email, sub: authBody.id };
+    return {
+      access_token: this.jwtService.sign(payload),
+    };
   }
 
   async rigisterUser(createUser: CreateAuthDto): Promise<CreateAuthDto> {
