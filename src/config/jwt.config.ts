@@ -4,6 +4,6 @@ import { appConfig } from './app.config';
 export const jwtConfig: JwtModuleAsyncOptions = {
   useFactory: () => ({
     secret: appConfig().JwtSecret,
-    signOptions: { expiresIn: '60s' },
+    signOptions: { expiresIn: '3600s' },
   }),
 };
