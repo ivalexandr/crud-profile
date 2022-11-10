@@ -18,7 +18,7 @@ export class User {
   public address: string;
 
   @Column()
-  public phone: number;
+  public phone: string;
 
   @Column()
   public password: string;
