@@ -10,6 +10,6 @@ export class UpdateDts {
   @IsString()
   public address?: string;
 
-  @IsNumber()
-  public phone?: number;
+  @IsString()
+  public phone?: string;
 }
