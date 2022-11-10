@@ -41,7 +41,7 @@ export class UsersService {
       password: hashPassword,
       about: '',
       name: '',
-      phone: 0,
+      phone: '',
       address: '',
     };
     await this.usersRepository.insert(newUser);
